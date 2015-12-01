@@ -555,6 +555,8 @@ public class Tonelitos extends javax.swing.JFrame {
             grafo.getNodos().add(new Node());
             grafo.getNodos().get(grafo.getNodos().size() - 1).setCoordenada(new Coordenada(x - 10, y - 10));
             grafo.getNodos().get(grafo.getNodos().size() - 1).setID(grafo.getNodos().size()-1);
+            grafo.getNodos().get(grafo.getNodos().size()-1).setNombre(Abecedario[iteradorabc]);
+            iteradorabc++;
 
             refresh();
             addVertex = false;
@@ -704,10 +706,10 @@ public class Tonelitos extends javax.swing.JFrame {
         for (int i = 0; i < grafo.getNodos().size(); i++) {
             g.drawOval(grafo.getNodos().get(i).getCoordenada().getX(),
                     grafo.getNodos().get(i).getCoordenada().getY(),
-                    25, 25);
+                    30, 30);
             g.fillOval(grafo.getNodos().get(i).getCoordenada().getX(),
                     grafo.getNodos().get(i).getCoordenada().getY(),
-                    25, 25);
+                    30, 30);
             System.out.println("X" + (i + 1) + ": " + grafo.getNodos().get(i).getCoordenada().getX());
             System.out.println("Y" + (i + 1) + ": " + grafo.getNodos().get(i).getCoordenada().getY() + "\n");
         }
@@ -723,7 +725,7 @@ public class Tonelitos extends javax.swing.JFrame {
                 y2 =  grafo.getNodos().get(i).getAristas().get(j).getNodoFinal().getID();
                 g.drawLine(grafo.getNodos().get(x1).getCoordenada().getX() + 15,
                         grafo.getNodos().get(y1).getCoordenada().getY(),
-                        grafo.getNodos().get(x2).getCoordenada().getX(),
+                        grafo.getNodos().get(x2).getCoordenada().getX()+15,
                         grafo.getNodos().get(y2).getCoordenada().getY());
 
             }
@@ -789,5 +791,8 @@ public class Tonelitos extends javax.swing.JFrame {
     private ArrayList<Integer> tempFloyd = new ArrayList();
     private boolean hasDijkstra=false;
     private boolean hasFloyd=false;
+    private String Abecedario[] ={"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R",
+    "S","T","U","V","W","X","Y","Z"};
+    private int iteradorabc = 0;
 
 }

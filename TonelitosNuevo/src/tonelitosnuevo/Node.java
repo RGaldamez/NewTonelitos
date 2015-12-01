@@ -7,6 +7,7 @@ public class Node {
     private Object value;
     private Node next;
     private int ID;
+    private String Nombre;
     private Coordenada coordenada;
     private ArrayList<Arista> aristas = new ArrayList();
     private long DijkstraNum = Integer.MAX_VALUE;
@@ -26,6 +27,14 @@ public class Node {
 
     public Node() {
         value = null;
+    }
+
+    public String getNombre() {
+        return Nombre;
+    }
+
+    public void setNombre(String Nombre) {
+        this.Nombre = Nombre;
     }
     
     
