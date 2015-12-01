@@ -505,8 +505,8 @@ public class Tonelitos extends javax.swing.JFrame {
         DefaultComboBoxModel model = new DefaultComboBoxModel();
         DefaultComboBoxModel model2 = new DefaultComboBoxModel();
         for (int i = 0; i < grafo.getNodos().size(); i++) {
-            model.addElement(grafo.getNodos().elementAt(i).getID());
-            model2.addElement(grafo.getNodos().elementAt(i).getID());
+            model.addElement(grafo.getNodos().get(i).getID());
+            model2.addElement(grafo.getNodos().get(i).getID());
         }
         this.jc_final.setModel(model);
         this.jc_inicial.setModel(model2);
@@ -521,7 +521,7 @@ public class Tonelitos extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "No puede seleccionar el mismo vértice", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
             distance = Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese la distancia entre los vértices"));
-            grafo.getNodos().elementAt(indexInicial).getAristas().push_back(new Arista(distance, grafo.getNodos().elementAt(indexInicial), grafo.getNodos().elementAt(indexFinal)));
+            grafo.getNodos().get(indexInicial).getAristas().add(new Arista(distance, grafo.getNodos().get(indexInicial), grafo.getNodos().get(indexFinal)));
             refresh();
         }
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -532,9 +532,9 @@ public class Tonelitos extends javax.swing.JFrame {
         int y = evt.getY();
 
         if (addVertex && this.jl_image.getIcon() != null) {
-            grafo.getNodos().push_back(new Node());
-            grafo.getNodos().elementAt(grafo.getNodos().size() - 1).setCoordenada(new Coordenada(x - 10, y - 10));
-            grafo.getNodos().elementAt(grafo.getNodos().size() - 1).setID(grafo.getNodos().size() - 1);
+            grafo.getNodos().add(new Node());
+            grafo.getNodos().get(grafo.getNodos().size() - 1).setCoordenada(new Coordenada(x - 10, y - 10));
+            grafo.getNodos().get(grafo.getNodos().size() - 1).setID(grafo.getNodos().size() - 1);
             //draw.drawOval(x-10, y-10, 25, 25);
             //draw.fillOval(x-10, y-10, 25, 25);
 
@@ -552,9 +552,9 @@ public class Tonelitos extends javax.swing.JFrame {
         int y = evt.getY();
 
         if (addVertex && this.jl_image.getIcon() != null) {
-            grafo.getNodos().push_back(new Node());
-            grafo.getNodos().elementAt(grafo.getNodos().size() - 1).setCoordenada(new Coordenada(x - 10, y - 10));
-            grafo.getNodos().elementAt(grafo.getNodos().size() - 1).setID(grafo.getNodos().size()-1);
+            grafo.getNodos().add(new Node());
+            grafo.getNodos().get(grafo.getNodos().size() - 1).setCoordenada(new Coordenada(x - 10, y - 10));
+            grafo.getNodos().get(grafo.getNodos().size() - 1).setID(grafo.getNodos().size()-1);
 
             refresh();
             addVertex = false;
@@ -569,7 +569,7 @@ public class Tonelitos extends javax.swing.JFrame {
         DefaultComboBoxModel model3 = new DefaultComboBoxModel();
         for (int i = 0; i < grafo.getNodos().size(); i++) {
 
-            model3.addElement(grafo.getNodos().elementAt(i).getID());
+            model3.addElement(grafo.getNodos().get(i).getID());
         }
 
         this.jc_vertice.setModel(model3);
@@ -588,8 +588,8 @@ public class Tonelitos extends javax.swing.JFrame {
         DefaultComboBoxModel model = new DefaultComboBoxModel();
         DefaultComboBoxModel model2 = new DefaultComboBoxModel();
         for (int i = 0; i < grafo.getNodos().size(); i++) {
-            model.addElement(grafo.getNodos().elementAt(i).getID());
-            model2.addElement(grafo.getNodos().elementAt(i).getID());
+            model.addElement(grafo.getNodos().get(i).getID());
+            model2.addElement(grafo.getNodos().get(i).getID());
         }
         this.jc_finalDijkstra.setModel(model);
         this.jc_inicialDijkstra.setModel(model2);
@@ -600,8 +600,8 @@ public class Tonelitos extends javax.swing.JFrame {
         DefaultComboBoxModel model = new DefaultComboBoxModel();
         DefaultComboBoxModel model2 = new DefaultComboBoxModel();
         for (int i = 0; i < grafo.getNodos().size(); i++) {
-            model.addElement(grafo.getNodos().elementAt(i).getID());
-            model2.addElement(grafo.getNodos().elementAt(i).getID());
+            model.addElement(grafo.getNodos().get(i).getID());
+            model2.addElement(grafo.getNodos().get(i).getID());
         }
         this.jc_finalFloyd.setModel(model);
         this.jc_inicialFloyd.setModel(model2);
@@ -613,17 +613,20 @@ public class Tonelitos extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        /*
+        
         int indexInicial = jc_inicialDijkstra.getSelectedIndex();
         int indexFinal = jc_finalDijkstra.getSelectedIndex();
         
         DefaultTableModel model = new DefaultTableModel();
-        tempDijkstra = grafo.Dijkstra(grafo.getNodos().elementAt(indexInicial), 
-                grafo.getNodos().elementAt(indexFinal));
+        tempDijkstra = grafo.Dijkstra(grafo.getNodos().get(indexInicial), 
+                grafo.getNodos().get(indexFinal));
         
         for (int i = 0; i < tempDijkstra.size(); i++) {
-            System.out.println(tempDijkstra.elementAt(i).getValue()+"");
+            System.out.println(tempDijkstra.get(i).getValue()+"");
         }
         hasDijkstra = true;
+        */
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jc_inicialDijkstraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jc_inicialDijkstraActionPerformed
@@ -631,74 +634,24 @@ public class Tonelitos extends javax.swing.JFrame {
     }//GEN-LAST:event_jc_inicialDijkstraActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-                JFileChooser fileChooser = new JFileChooser();
-        int seleccion = fileChooser.showSaveDialog(this);
-        if (seleccion == JFileChooser.APPROVE_OPTION) {
-            File reporte = fileChooser.getSelectedFile();
-            //crear la carpeta
-            File archivo = new File(reporte.getAbsolutePath() + ".txt");
-            FileWriter fw = null;
-            BufferedWriter bw = null;
-            try {
-                fw = new FileWriter(archivo, false);
-                bw = new BufferedWriter(fw);
-                bw.write("Dijkstra: ");
-                for (int i = 0; i < tempDijkstra.size(); i++) {
-                    
-                    bw.write(tempDijkstra.elementAt(i).getValue()+ ""+"\n");
-                }
-                bw.flush();
-            } catch (Exception e) {
-            } finally {
-                try {
-                    bw.close();
-                    fw.close();
-                } catch (Exception e) {
-                }
-            }
-
-        }
+               
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-          JFileChooser fileChooser = new JFileChooser();
-        int seleccion = fileChooser.showSaveDialog(this);
-        if (seleccion == JFileChooser.APPROVE_OPTION) {
-            File reporte = fileChooser.getSelectedFile();
-            //crear la carpeta
-            File archivo = new File(reporte.getAbsolutePath() + ".txt");
-            FileWriter fw = null;
-            BufferedWriter bw = null;
-            try {
-                fw = new FileWriter(archivo, false);
-                bw = new BufferedWriter(fw);
-                bw.write("Floyd: ");
-                for (int i = 0; i < tempFloyd.size(); i++) {
-                    
-                    bw.write(tempFloyd.elementAt(i).getValue()+ ""+"\n");
-                }
-                bw.flush();
-            } catch (Exception e) {
-            } finally {
-                try {
-                    bw.close();
-                    fw.close();
-                } catch (Exception e) {
-                }
-            }
-
-        }
+        
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        /*
         int indexInicial = this.jc_inicialFloyd.getSelectedIndex();
         int indexFinal = this.jc_finalFloyd.getSelectedIndex();
         
-        tempFloyd = grafo.FLoyd(grafo.getNodos().elementAt(indexInicial), grafo.getNodos().elementAt(indexFinal));
+        tempFloyd = grafo.FLoyd(grafo.getNodos().get(indexInicial), grafo.getNodos().get(indexFinal));
         
         for (int i = 0; i < tempFloyd.size(); i++) {
-            System.out.println(tempFloyd.elementAt(i).getValue()+ "");
+            System.out.println(tempFloyd.get(i).getValue()+ "");
         }
+        */
     }//GEN-LAST:event_jButton10ActionPerformed
 
     /**
@@ -749,29 +702,29 @@ public class Tonelitos extends javax.swing.JFrame {
 
         g.setColor(red);
         for (int i = 0; i < grafo.getNodos().size(); i++) {
-            g.drawOval(grafo.getNodos().elementAt(i).getCoordenada().getX(),
-                    grafo.getNodos().elementAt(i).getCoordenada().getY(),
+            g.drawOval(grafo.getNodos().get(i).getCoordenada().getX(),
+                    grafo.getNodos().get(i).getCoordenada().getY(),
                     25, 25);
-            g.fillOval(grafo.getNodos().elementAt(i).getCoordenada().getX(),
-                    grafo.getNodos().elementAt(i).getCoordenada().getY(),
+            g.fillOval(grafo.getNodos().get(i).getCoordenada().getX(),
+                    grafo.getNodos().get(i).getCoordenada().getY(),
                     25, 25);
-            System.out.println("X" + (i + 1) + ": " + grafo.getNodos().elementAt(i).getCoordenada().getX());
-            System.out.println("Y" + (i + 1) + ": " + grafo.getNodos().elementAt(i).getCoordenada().getY() + "\n");
+            System.out.println("X" + (i + 1) + ": " + grafo.getNodos().get(i).getCoordenada().getX());
+            System.out.println("Y" + (i + 1) + ": " + grafo.getNodos().get(i).getCoordenada().getY() + "\n");
         }
 
         int x1, x2, y1, y2;
 
         for (int i = 0; i < grafo.getNodos().size(); i++) {
 
-            for (int j = 0; j < grafo.getNodos().elementAt(i).getAristas().size(); j++) {
-                x1 = ((Arista) grafo.getNodos().elementAt(i).getAristas().elementAt(j).getValue()).getNodoInicial().getID();
-                y1 = ((Arista) grafo.getNodos().elementAt(i).getAristas().elementAt(j).getValue()).getNodoInicial().getID();
-                x2 = ((Arista) grafo.getNodos().elementAt(i).getAristas().elementAt(j).getValue()).getNodoFinal().getID();
-                y2 = ((Arista) grafo.getNodos().elementAt(i).getAristas().elementAt(j).getValue()).getNodoFinal().getID();
-                g.drawLine(grafo.getNodos().elementAt(x1).getCoordenada().getX() + 15,
-                        grafo.getNodos().elementAt(y1).getCoordenada().getY(),
-                        grafo.getNodos().elementAt(x2).getCoordenada().getX(),
-                        grafo.getNodos().elementAt(y2).getCoordenada().getY());
+            for (int j = 0; j < grafo.getNodos().get(i).getAristas().size(); j++) {
+                x1 =  grafo.getNodos().get(i).getAristas().get(j).getNodoInicial().getID();
+                y1 =  grafo.getNodos().get(i).getAristas().get(j).getNodoInicial().getID();
+                x2 =  grafo.getNodos().get(i).getAristas().get(j).getNodoFinal().getID();
+                y2 =  grafo.getNodos().get(i).getAristas().get(j).getNodoFinal().getID();
+                g.drawLine(grafo.getNodos().get(x1).getCoordenada().getX() + 15,
+                        grafo.getNodos().get(y1).getCoordenada().getY(),
+                        grafo.getNodos().get(x2).getCoordenada().getX(),
+                        grafo.getNodos().get(y2).getCoordenada().getY());
 
             }
 
