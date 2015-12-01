@@ -111,4 +111,14 @@ public class Grafo {
             }
         }
     }
+
+    public ArrayList<Node> getNodos() {
+        return nodos;
+    }
+
+    public void setNodos(ArrayList<Node> nodos) {
+        this.nodos = nodos;
+    }
+     
+     
 }
