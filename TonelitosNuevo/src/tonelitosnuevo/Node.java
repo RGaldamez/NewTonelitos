@@ -10,8 +10,8 @@ public class Node {
     private String Nombre;
     private Coordenada coordenada;
     private ArrayList<Arista> aristas = new ArrayList();
-    private long DijkstraNum = Integer.MAX_VALUE;
-    private ArrayList<Arista> DijkstraPath = new ArrayList();
+    //private long DijkstraNum = Integer.MAX_VALUE;
+    //private ArrayList<Arista> DijkstraPath = new ArrayList();
 
 
     public Node(Object value) {
@@ -86,13 +86,13 @@ public class Node {
         this.ID = ID;
     }
     
-    public long getDijkstraNum() {
+    /*public long getDijkstraNum() {
         return DijkstraNum;
     }
 
     public void setDijkstraNum(long DijkstraNum) {
         this.DijkstraNum = DijkstraNum;
-    }
+    }*/
 
     public ArrayList<Arista> getAristas() {
         return aristas;
@@ -101,7 +101,7 @@ public class Node {
     public void setAristas(ArrayList<Arista> aristas) {
         this.aristas = aristas;
     }
-     public ArrayList<Arista> getDijkstraPath(){
+     /*public ArrayList<Arista> getDijkstraPath(){
         return DijkstraPath;
     }
     
@@ -111,7 +111,7 @@ public class Node {
     
     public void addToPath(Arista edge){
         DijkstraPath.add(edge);
-    }
+    }*/
     
     
     
