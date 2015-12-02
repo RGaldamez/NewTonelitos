@@ -158,16 +158,8 @@ public class Grafo {
             permanents.set(num_temp, true);
             otherPermanents.add(nodos.get(num_temp));
         }
-        int num_temp = -1;
-        int min = Integer.MAX_VALUE;
-        for (int i = 0; i < dijkstraNumber.size(); i++) {
-            if (dijkstraNumber.get(i) < min) {
-                min = dijkstraNumber.get(i);
-                num_temp = i;                
-            }
-        }
         
-        return dijkstraPath.get(num_temp);
+        return dijkstraPath.get(DESTINY);
     }
 
     public ArrayList<Node> getNodos() {
