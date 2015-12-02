@@ -78,11 +78,11 @@ public class Grafo {
                 }
             }
             nodos.remove(nodeIndex);
-            /*
+            
             for (int i = 0; i < nodos.size(); i++) {
                 nodos.get(i).setID(i);
             }
-            */
+            
         } else {
             System.err.println("Index out of bounds");
         }

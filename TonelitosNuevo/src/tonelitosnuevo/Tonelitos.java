@@ -505,8 +505,8 @@ public class Tonelitos extends javax.swing.JFrame {
         DefaultComboBoxModel model = new DefaultComboBoxModel();
         DefaultComboBoxModel model2 = new DefaultComboBoxModel();
         for (int i = 0; i < grafo.getNodos().size(); i++) {
-            model.addElement(grafo.getNodos().get(i).getID());
-            model2.addElement(grafo.getNodos().get(i).getID());
+            model.addElement(grafo.getNodos().get(i).getNombre());
+            model2.addElement(grafo.getNodos().get(i).getNombre());
         }
         this.jc_final.setModel(model);
         this.jc_inicial.setModel(model2);
@@ -571,7 +571,7 @@ public class Tonelitos extends javax.swing.JFrame {
         DefaultComboBoxModel model3 = new DefaultComboBoxModel();
         for (int i = 0; i < grafo.getNodos().size(); i++) {
 
-            model3.addElement(grafo.getNodos().get(i).getID());
+            model3.addElement(grafo.getNodos().get(i).getNombre());
         }
 
         this.jc_vertice.setModel(model3);
@@ -583,15 +583,31 @@ public class Tonelitos extends javax.swing.JFrame {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         int index = jc_vertice.getSelectedIndex();
         grafo.removeVertex(index);
+        this.setSize(this.getWidth()+1, this.getHeight()+1);
+        this.setSize(this.getWidth()-1, this.getHeight()-1);
         refresh();
+        
+        DefaultComboBoxModel model3 = new DefaultComboBoxModel();
+        for (int i = 0; i < grafo.getNodos().size(); i++) {
+
+            model3.addElement(grafo.getNodos().get(i).getNombre());
+        }
+
+        this.jc_vertice.setModel(model3);
+        JOptionPane.showMessageDialog(this,"Vértice eliminado con exito, por favor cerrar esta ventana para mostrar los cambios","",JOptionPane.INFORMATION_MESSAGE);
+        
+
+        
+        refresh();
+        
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         DefaultComboBoxModel model = new DefaultComboBoxModel();
         DefaultComboBoxModel model2 = new DefaultComboBoxModel();
         for (int i = 0; i < grafo.getNodos().size(); i++) {
-            model.addElement(grafo.getNodos().get(i).getID());
-            model2.addElement(grafo.getNodos().get(i).getID());
+            model.addElement(grafo.getNodos().get(i).getNombre());
+            model2.addElement(grafo.getNodos().get(i).getNombre());
         }
         this.jc_finalDijkstra.setModel(model);
         this.jc_inicialDijkstra.setModel(model2);
@@ -602,8 +618,8 @@ public class Tonelitos extends javax.swing.JFrame {
         DefaultComboBoxModel model = new DefaultComboBoxModel();
         DefaultComboBoxModel model2 = new DefaultComboBoxModel();
         for (int i = 0; i < grafo.getNodos().size(); i++) {
-            model.addElement(grafo.getNodos().get(i).getID());
-            model2.addElement(grafo.getNodos().get(i).getID());
+            model.addElement(grafo.getNodos().get(i).getNombre());
+            model2.addElement(grafo.getNodos().get(i).getNombre());
         }
         this.jc_finalFloyd.setModel(model);
         this.jc_inicialFloyd.setModel(model2);
@@ -696,12 +712,15 @@ public class Tonelitos extends javax.swing.JFrame {
 
     public void refresh() {
        
-        //jp_graphics.removeAll();
+        
         //jp_graphics.updateUI();
         
-        Graphics g = this.jp_graphics.getGraphics();
+        
         //g.clearRect(0, 0, jp_graphics.getWidth(), jp_graphics.getHeight());
-
+        
+        //jp_graphics.removeAll();
+        
+        Graphics g = this.jp_graphics.getGraphics();
         g.setColor(red);
         for (int i = 0; i < grafo.getNodos().size(); i++) {
             g.drawOval(grafo.getNodos().get(i).getCoordenada().getX(),
@@ -724,9 +743,9 @@ public class Tonelitos extends javax.swing.JFrame {
                 x2 =  grafo.getNodos().get(i).getAristas().get(j).getNodoFinal().getID();
                 y2 =  grafo.getNodos().get(i).getAristas().get(j).getNodoFinal().getID();
                 g.drawLine(grafo.getNodos().get(x1).getCoordenada().getX() + 15,
-                        grafo.getNodos().get(y1).getCoordenada().getY(),
+                        grafo.getNodos().get(y1).getCoordenada().getY()+15,
                         grafo.getNodos().get(x2).getCoordenada().getX()+15,
-                        grafo.getNodos().get(y2).getCoordenada().getY());
+                        grafo.getNodos().get(y2).getCoordenada().getY()+15);
 
             }
 
@@ -794,5 +813,7 @@ public class Tonelitos extends javax.swing.JFrame {
     private String Abecedario[] ={"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R",
     "S","T","U","V","W","X","Y","Z"};
     private int iteradorabc = 0;
+    boolean dimsensionar = false;
 
 }
+
