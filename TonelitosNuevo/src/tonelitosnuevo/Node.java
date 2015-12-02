@@ -11,7 +11,7 @@ public class Node {
     private Coordenada coordenada;
     private ArrayList<Arista> aristas = new ArrayList();
     private long DijkstraNum = Integer.MAX_VALUE;
-    //private List DijkstraPath = new List();
+    private ArrayList<Arista> DijkstraPath = new ArrayList();
 
 
     public Node(Object value) {
@@ -100,6 +100,17 @@ public class Node {
 
     public void setAristas(ArrayList<Arista> aristas) {
         this.aristas = aristas;
+    }
+     public ArrayList<Arista> getDijkstraPath(){
+        return DijkstraPath;
+    }
+    
+    public void setDijkstraPath(ArrayList<Arista> DijkstraPath){
+        this.DijkstraPath = DijkstraPath;
+    }
+    
+    public void addToPath(Arista edge){
+        DijkstraPath.add(edge);
     }
     
     

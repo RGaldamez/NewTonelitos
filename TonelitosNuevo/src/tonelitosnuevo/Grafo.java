@@ -111,6 +111,64 @@ public class Grafo {
             }
         }
     }
+     
+    public ArrayList<Arista> summonDijkstra(int ORIGIN,  int DESTINY){
+        ArrayList<Boolean> permanents= new ArrayList();
+        ArrayList<Integer> dijkstraNumber = new ArrayList();
+        ArrayList<ArrayList<Arista>> dijkstraPath = new ArrayList();
+        ArrayList<Node> otherPermanents = new ArrayList();
+        Node origin = nodos.get(ORIGIN);
+        Node destiny = nodos.get(DESTINY);
+        
+        for (int i = 0; i < nodos.size(); i++) {
+            permanents.add(false);
+            dijkstraNumber.add(Integer.MAX_VALUE);
+            dijkstraPath.add(new ArrayList());
+        }
+        
+        permanents.set(ORIGIN, true);
+        dijkstraNumber.set(ORIGIN, 0);
+        otherPermanents.add(origin);
+        
+        
+        while(nodos.size() > otherPermanents.size()){
+            int num_temp = nodos.indexOf(otherPermanents.get(otherPermanents.size()-1));
+            Node temp = nodos.get(num_temp);
+            for (int i = 0; i < temp.getAristas().size(); i++) {
+                for (int j = 0; j < permanents.size(); j++) {
+                    int num_nodofinal = nodos.indexOf(temp.getAristas().get(i).getNodoFinal());
+                    if ((!permanents.get(j)) && nodos.get(num_nodofinal) != nodos.get(j)) {
+                        if(temp.getAristas().get(i).getDistancia() + dijkstraNumber.get(num_temp) < dijkstraNumber.get(num_nodofinal)){
+                            dijkstraNumber.set(num_nodofinal, (int)(temp.getAristas().get(i).getDistancia() + dijkstraNumber.get(num_temp)));
+                            dijkstraPath.set(num_nodofinal, dijkstraPath.get(num_temp));
+                            dijkstraPath.get(num_nodofinal).add(temp.getAristas().get(i));
+                        }
+                    }
+                }
+            }
+            int min = Integer.MAX_VALUE;
+            for (int i = 0; i < permanents.size(); i++) {
+                if (!permanents.get(i)) {
+                    if (dijkstraNumber.get(i) < min) {
+                        min = dijkstraNumber.get(i);
+                        num_temp = i;
+                    }
+                }
+            }
+            permanents.set(num_temp, true);
+            otherPermanents.add(nodos.get(num_temp));
+        }
+        int num_temp = -1;
+        int min = Integer.MAX_VALUE;
+        for (int i = 0; i < dijkstraNumber.size(); i++) {
+            if (dijkstraNumber.get(i) < min) {
+                min = dijkstraNumber.get(i);
+                num_temp = i;                
+            }
+        }
+        
+        return dijkstraPath.get(num_temp);
+    }
 
     public ArrayList<Node> getNodos() {
         return nodos;
