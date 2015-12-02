@@ -398,7 +398,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jLayeredPane1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jp_lblparent" pref="83" max="32767" attributes="0"/>
+                      <Component id="jp_lblparent" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
@@ -517,10 +517,10 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <EmptySpace min="0" pref="632" max="32767" attributes="0"/>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="31" max="32767" attributes="0"/>
-                      <Component id="jp_graphics" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jp_graphics" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="41" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <Group type="103" rootIndex="2" groupAlignment="0" attributes="0">
@@ -550,7 +550,7 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="589" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="579" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>

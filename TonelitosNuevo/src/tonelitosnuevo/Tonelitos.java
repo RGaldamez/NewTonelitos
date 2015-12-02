@@ -6,6 +6,8 @@
 package tonelitosnuevo;
 
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.BufferedWriter;
@@ -367,7 +369,7 @@ public class Tonelitos extends javax.swing.JFrame {
         );
         jp_graphicsLayout.setVerticalGroup(
             jp_graphicsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 589, Short.MAX_VALUE)
+            .addGap(0, 579, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
@@ -390,10 +392,10 @@ public class Tonelitos extends javax.swing.JFrame {
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 632, Short.MAX_VALUE)
             .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
-                    .addContainerGap(31, Short.MAX_VALUE)
+                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                    .addContainerGap()
                     .addComponent(jp_graphics, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap()))
+                    .addContainerGap(41, Short.MAX_VALUE)))
             .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jLayeredPane1Layout.createSequentialGroup()
                     .addContainerGap()
@@ -427,7 +429,7 @@ public class Tonelitos extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jp_lblparent, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE))
+                        .addComponent(jp_lblparent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -719,10 +721,13 @@ public class Tonelitos extends javax.swing.JFrame {
         //g.clearRect(0, 0, jp_graphics.getWidth(), jp_graphics.getHeight());
         
         //jp_graphics.removeAll();
-        
+        Font font = new Font ("Dialog",Font.BOLD,14);
         Graphics g = this.jp_graphics.getGraphics();
-        g.setColor(red);
+        g.setFont(font);
+        
+        
         for (int i = 0; i < grafo.getNodos().size(); i++) {
+            g.setColor(Color.RED);
             g.drawOval(grafo.getNodos().get(i).getCoordenada().getX(),
                     grafo.getNodos().get(i).getCoordenada().getY(),
                     30, 30);
@@ -736,19 +741,30 @@ public class Tonelitos extends javax.swing.JFrame {
         int x1, x2, y1, y2;
 
         for (int i = 0; i < grafo.getNodos().size(); i++) {
-
+            
             for (int j = 0; j < grafo.getNodos().get(i).getAristas().size(); j++) {
-                x1 =  grafo.getNodos().get(i).getAristas().get(j).getNodoInicial().getID();
-                y1 =  grafo.getNodos().get(i).getAristas().get(j).getNodoInicial().getID();
-                x2 =  grafo.getNodos().get(i).getAristas().get(j).getNodoFinal().getID();
-                y2 =  grafo.getNodos().get(i).getAristas().get(j).getNodoFinal().getID();
-                g.drawLine(grafo.getNodos().get(x1).getCoordenada().getX() + 15,
+                try {
+                    x1 =  grafo.getNodos().get(i).getAristas().get(j).getNodoInicial().getID();
+                    y1 =  grafo.getNodos().get(i).getAristas().get(j).getNodoInicial().getID();
+                    x2 =  grafo.getNodos().get(i).getAristas().get(j).getNodoFinal().getID();
+                    y2 =  grafo.getNodos().get(i).getAristas().get(j).getNodoFinal().getID();
+                    g.setColor(Color.RED);
+                    g.drawLine(grafo.getNodos().get(x1).getCoordenada().getX() + 15,
                         grafo.getNodos().get(y1).getCoordenada().getY()+15,
                         grafo.getNodos().get(x2).getCoordenada().getX()+15,
                         grafo.getNodos().get(y2).getCoordenada().getY()+15);
+                } catch (Exception e) {
+                }
+                
 
             }
 
+        }
+        
+        for (int i = 0; i < grafo.getNodos().size(); i++) {
+            g.setColor(Color.BLACK);
+            g.drawString(grafo.getNodos().get(i).getNombre(),grafo.getNodos().get(i).getCoordenada().getX()+10 
+                    , grafo.getNodos().get(i).getCoordenada().getY()+18);
         }
 
     }
@@ -811,7 +827,8 @@ public class Tonelitos extends javax.swing.JFrame {
     private boolean hasDijkstra=false;
     private boolean hasFloyd=false;
     private String Abecedario[] ={"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R",
-    "S","T","U","V","W","X","Y","Z"};
+    "S","T","U","V","W","X","Y","Z","A1","B1","C1","D1","E1","F1","G1","H1","I1","J1","K1","L1","M1","N1","O1","P1","Q1","R1",
+    "S1","T1","U1","V1","W1","X1","Y1","Z1"};
     private int iteradorabc = 0;
     boolean dimsensionar = false;
 
