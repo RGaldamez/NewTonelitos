@@ -31,6 +31,14 @@ public class Node {
         this.coordenada = coordenada;
         this.aristas = aristas;
     }
+
+    public Node(int ID, String Nombre, Coordenada coordenada) {
+        this.ID = ID;
+        this.Nombre = Nombre;
+        this.coordenada = coordenada;
+    }
+    
+    
     
     public Node() {
         value = null;

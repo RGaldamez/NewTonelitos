@@ -529,7 +529,7 @@ public class Tonelitos extends javax.swing.JFrame {
                     writer.write(grafo.getNodos().get(i).getNombre()+",");
                     writer.write(grafo.getNodos().get(i).getCoordenada().getX()+",");
                     if (grafo.getNodos().get(i).getAristas().isEmpty()){
-                        writer.write(grafo.getNodos().get(i).getCoordenada().getY());
+                        writer.write(grafo.getNodos().get(i).getCoordenada().getY()+"");
                     }else{
                         writer.write(grafo.getNodos().get(i).getCoordenada().getY()+";");
                     }
@@ -541,6 +541,7 @@ public class Tonelitos extends javax.swing.JFrame {
                     writer.write("\n");
                     }
                     writer.flush();
+                    JOptionPane.showMessageDialog(this, "Archivo creado con exito");
                 }
                 
             } catch (Exception e) {
@@ -748,7 +749,14 @@ public class Tonelitos extends javax.swing.JFrame {
             int contadorNodos =0;
             String generalAristas;
             String []aristas;
+            String []datosArista;
+            int tamañoAristas;
             Node nodeTemp;
+            int ID;
+            String Nombre;
+            int X;
+            int Y;
+            Coordenada coordenada;
             Arista aristaTemp;
             int contadorAristas = 0;
             int indexhasAristas=-1;
@@ -776,6 +784,10 @@ public class Tonelitos extends javax.swing.JFrame {
                             generalAristas+=stringGeneral.charAt(i);
                         }
                         aristas = generalAristas.split(";");
+                        
+                        
+                        
+                        /////////////aqui se pone bueno
                         
   
                     }else{
