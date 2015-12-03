@@ -510,58 +510,58 @@ public class Tonelitos extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         boolean isEmpty = false;
         for (int i = 0; i < grafo.getNodos().size(); i++) {
-            if (grafo.getNodos().get(i).getAristas().isEmpty()){
+            if (grafo.getNodos().get(i).getAristas().isEmpty()) {
                 isEmpty = true;
                 break;
             }
         }
         JFileChooser chooser = new JFileChooser();
-        int seleccion  = chooser.showSaveDialog(this);
-        if (seleccion == JFileChooser.APPROVE_OPTION){
-            File file=null;
+        int seleccion = chooser.showSaveDialog(this);
+        if (seleccion == JFileChooser.APPROVE_OPTION) {
+            File file = null;
             File temp;
-            FileWriter fw=null;
+            FileWriter fw = null;
             BufferedWriter writer = null;
             try {
                 temp = chooser.getSelectedFile();
-                file = new File(temp.getAbsolutePath()+".grph");
-                fw = new FileWriter (file);
-                writer = new BufferedWriter (fw);
-                if (fw == null || writer == null ){
+                file = new File(temp.getAbsolutePath() + ".grph");
+                fw = new FileWriter(file);
+                writer = new BufferedWriter(fw);
+                if (fw == null || writer == null) {
                     System.err.println("es 0.0000000000000000000000000000000001% probable que esta linea salga, revisar exportacion de grafo");
-                }else{
+                } else {
                     for (int i = 0; i < grafo.getNodos().size(); i++) {
-                    writer.write(grafo.getNodos().get(i).getID()+",");
-                    writer.write(grafo.getNodos().get(i).getNombre()+",");
-                    writer.write(grafo.getNodos().get(i).getCoordenada().getX()+",");
-                    if (grafo.getNodos().get(i).getAristas().isEmpty()){
-                        writer.write(grafo.getNodos().get(i).getCoordenada().getY()+",");
-                    }else{
-                        writer.write(grafo.getNodos().get(i).getCoordenada().getY()+",;");
-                        for (int j = 0; j < grafo.getNodos().get(i).getAristas().size(); j++) {
-                            writer.write(grafo.getNodos().get(i).getAristas().get(j).getNodoInicial().getID()+"/");
-                            writer.write(grafo.getNodos().get(i).getAristas().get(j).getNodoFinal().getID()+"/");
-                            writer.write(Long.toString(grafo.getNodos().get(i).getAristas().get(j).getDistancia())+"/;");
+                        writer.write(grafo.getNodos().get(i).getID() + ",");
+                        writer.write(grafo.getNodos().get(i).getNombre() + ",");
+                        writer.write(grafo.getNodos().get(i).getCoordenada().getX() + ",");
+                        if (grafo.getNodos().get(i).getAristas().isEmpty()) {
+                            writer.write(grafo.getNodos().get(i).getCoordenada().getY() + ",");
+                        } else {
+                            writer.write(grafo.getNodos().get(i).getCoordenada().getY() + ",;");
+                            for (int j = 0; j < grafo.getNodos().get(i).getAristas().size(); j++) {
+                                writer.write(grafo.getNodos().get(i).getAristas().get(j).getNodoInicial().getID() + "/");
+                                writer.write(grafo.getNodos().get(i).getAristas().get(j).getNodoFinal().getID() + "/");
+                                writer.write(Long.toString(grafo.getNodos().get(i).getAristas().get(j).getDistancia()) + "/;");
+                            }
                         }
-                    }
-                    writer.write("\r");
+                        writer.write("\r");
                     }
                     writer.flush();
                     JOptionPane.showMessageDialog(this, "Archivo creado con exito");
                 }
-                
+
             } catch (Exception e) {
-            } finally{
+            } finally {
                 try {
                     writer.close();
                     fw.close();
                 } catch (Exception e) {
                 }
-                
+
             }
         }
-        
-        
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -619,18 +619,17 @@ public class Tonelitos extends javax.swing.JFrame {
         int x = evt.getX();
         int y = evt.getY();
 
-        
-            grafo.getNodos().add(new Node());
-            grafo.getNodos().get(grafo.getNodos().size() - 1).setCoordenada(new Coordenada(x - 10, y - 10));
-            grafo.getNodos().get(grafo.getNodos().size() - 1).setID(grafo.getNodos().size()-1);
-            grafo.getNodos().get(grafo.getNodos().size()-1).setNombre(Abecedario[iteradorabc]);
-            iteradorabc++;
-            this.nodosMauricio = grafo.getNodos();
+        grafo.getNodos().add(new Node());
+        grafo.getNodos().get(grafo.getNodos().size() - 1).setCoordenada(new Coordenada(x - 10, y - 10));
+        grafo.getNodos().get(grafo.getNodos().size() - 1).setID(grafo.getNodos().size() - 1);
+        grafo.getNodos().get(grafo.getNodos().size() - 1).setNombre(Abecedario[iteradorabc]);
+        iteradorabc++;
+        this.nodosMauricio = grafo.getNodos();
 
-            refresh();
-            addVertex = false;
-            
-        
+        refresh();
+        addVertex = false;
+
+
     }//GEN-LAST:event_jp_graphicsMouseClicked
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -650,10 +649,10 @@ public class Tonelitos extends javax.swing.JFrame {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         int index = jc_vertice.getSelectedIndex();
         grafo.removeVertex(index);
-        this.setSize(this.getWidth()+1, this.getHeight()+1);
-        this.setSize(this.getWidth()-1, this.getHeight()-1);
+        this.setSize(this.getWidth() + 1, this.getHeight() + 1);
+        this.setSize(this.getWidth() - 1, this.getHeight() - 1);
         refresh();
-        
+
         DefaultComboBoxModel model3 = new DefaultComboBoxModel();
         for (int i = 0; i < grafo.getNodos().size(); i++) {
 
@@ -661,12 +660,11 @@ public class Tonelitos extends javax.swing.JFrame {
         }
 
         this.jc_vertice.setModel(model3);
-        JOptionPane.showMessageDialog(this,"Vértice eliminado con exito, por favor cerrar esta ventana para mostrar los cambios","",JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Vértice eliminado con exito, por favor cerrar esta ventana para mostrar los cambios", "", JOptionPane.INFORMATION_MESSAGE);
         nodosMauricio = grafo.getNodos();
 
-        
         refresh();
-        
+
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
@@ -678,7 +676,7 @@ public class Tonelitos extends javax.swing.JFrame {
         }
         this.jc_finalDijkstra.setModel(model);
         this.jc_inicialDijkstra.setModel(model2);
-        openDialog(this.Dijkstra);        
+        openDialog(this.Dijkstra);
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -690,7 +688,7 @@ public class Tonelitos extends javax.swing.JFrame {
         }
         this.jc_finalFloyd.setModel(model);
         this.jc_inicialFloyd.setModel(model2);
-        openDialog(this.Floyd);        
+        openDialog(this.Floyd);
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
@@ -699,19 +697,18 @@ public class Tonelitos extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         ArrayList<Arista> aristasDijkstra = new ArrayList();
-        
+
         int indexInicial = jc_inicialDijkstra.getSelectedIndex();
         int indexFinal = jc_finalDijkstra.getSelectedIndex();
-        
-        aristasDijkstra = grafo.summonDijkstra(indexInicial,indexFinal);
-        
+
+        aristasDijkstra = grafo.summonDijkstra(indexInicial, indexFinal);
+
         for (int i = 0; i < aristasDijkstra.size(); i++) {
             System.out.println(aristasDijkstra.get(i).toString());
         }
-        
-        
+
         hasDijkstra = true;
-        
+
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jc_inicialDijkstraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jc_inicialDijkstraActionPerformed
@@ -719,7 +716,7 @@ public class Tonelitos extends javax.swing.JFrame {
     }//GEN-LAST:event_jc_inicialDijkstraActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-               
+
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
@@ -727,6 +724,16 @@ public class Tonelitos extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        Long[][] ponderaciones = Cancer(nodosMauricio.size(), nodosMauricio);
+        int[][] caminos = llenarCaminos(nodosMauricio.size());
+        Floyd(nodosMauricio.size(), caminos, ponderaciones);
+        route = ruta(jc_inicialFloyd.getSelectedIndex(), jc_finalFloyd.getSelectedIndex(), ponderaciones);
+        for (int i = 0; i < caminos.length; i++) {
+            for (int j = 0; j < caminos[0].length; j++) {
+                fabricioMatrix[i][j] = nodosMauricio.get(caminos[i][j]);
+            }
+        }
+        ArrayList<Node> ruta = PorDondePasa(fabricioMatrix,jc_inicialFloyd.getSelectedIndex(), jc_finalFloyd.getSelectedIndex());
         /*
         int indexInicial = this.jc_inicialFloyd.getSelectedIndex();
         int indexFinal = this.jc_finalFloyd.getSelectedIndex();
@@ -736,31 +743,31 @@ public class Tonelitos extends javax.swing.JFrame {
         for (int i = 0; i < tempFloyd.size(); i++) {
             System.out.println(tempFloyd.get(i).getValue()+ "");
         }
-        */
+         */
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         //FileNameExtensionFilter filter = new FileNameExtensionFilter ("Archivo de grafo","grph");
-        
+
         JFileChooser chooser = new JFileChooser();
         //chooser.setFileFilter(filter);
         int seleccion = chooser.showOpenDialog(this);
-        
-        if (seleccion == JFileChooser.APPROVE_OPTION){
+
+        if (seleccion == JFileChooser.APPROVE_OPTION) {
             grafo = new Grafo();
-            this.setSize(this.getWidth()+1, this.getHeight()+1);
-            this.setSize(this.getWidth()-1, this.getHeight()-1);
+            this.setSize(this.getWidth() + 1, this.getHeight() + 1);
+            this.setSize(this.getWidth() - 1, this.getHeight() - 1);
             String stringGeneral;
             String generalTemp;
-            String []nodos;
+            String[] nodos;
             String generalAristas;
-            String []aristas;
-            String []datosArista;
+            String[] aristas;
+            String[] datosArista;
             int ID;
             String Nombre;
             int X;
             int Y;
-            int indexhasAristas=-1;
+            int indexhasAristas = -1;
             boolean hasAristas = false;
             File file = chooser.getSelectedFile();
             FileReader fr = null;
@@ -768,65 +775,60 @@ public class Tonelitos extends javax.swing.JFrame {
             try {
                 fr = new FileReader(file);
                 reader = new BufferedReader(fr);
-                
-                while ((generalTemp = reader.readLine())!=null){
+
+                while ((generalTemp = reader.readLine()) != null) {
                     stringGeneral = generalTemp;
                     System.out.println(stringGeneral);
                     //confirma que tiene aristas desde un principio
                     for (int i = 0; i < stringGeneral.length(); i++) {
-                        if (stringGeneral.charAt(i) == ';'){
+                        if (stringGeneral.charAt(i) == ';') {
                             hasAristas = true;
-                            indexhasAristas = i+1;
+                            indexhasAristas = i + 1;
                             break;
                         }
                     }
                     nodos = stringGeneral.split(",");
-                    if (hasAristas){
+                    if (hasAristas) {
                         generalAristas = "";
                         for (int i = indexhasAristas; i < stringGeneral.length(); i++) {
-                            generalAristas+=stringGeneral.charAt(i);
+                            generalAristas += stringGeneral.charAt(i);
                         }
                         aristas = generalAristas.split(";");
-                        
-                        
-                        
+
                         /////////////aqui se pone bueno
                         ID = Integer.parseInt(nodos[0]);
                         Nombre = nodos[1];
                         X = Integer.parseInt(nodos[2]);
                         Y = Integer.parseInt(nodos[3]);
-                        grafo.getNodos().add(new Node(ID,Nombre,new Coordenada (X,Y)));
+                        grafo.getNodos().add(new Node(ID, Nombre, new Coordenada(X, Y)));
                         for (String arista : aristas) {
                             datosArista = arista.split("/");
-                            grafo.getNodos().get(grafo.getNodos().size()-1).getAristas().add(new Arista (Long.parseLong(datosArista[2]),
+                            grafo.getNodos().get(grafo.getNodos().size() - 1).getAristas().add(new Arista(Long.parseLong(datosArista[2]),
                                     Integer.parseInt(datosArista[0]),
                                     Integer.parseInt(datosArista[1])));
                         }
-                    }else{
+                    } else {
                         nodos = stringGeneral.split(",");
-                          
+
                         ID = Integer.parseInt(nodos[0]);
                         Nombre = nodos[1];
                         X = Integer.parseInt(nodos[2]);
                         Y = Integer.parseInt(nodos[3]);
-                        grafo.getNodos().add(new Node(ID,Nombre,new Coordenada (X,Y)));
+                        grafo.getNodos().add(new Node(ID, Nombre, new Coordenada(X, Y)));
                     }
-                    
-                    
-                    
+
                 }
                 for (int i = 0; i < grafo.getNodos().size(); i++) {
-                        for (int j = 0; j < grafo.getNodos().get(i).getAristas().size(); j++) {
-                            grafo.getNodos().get(i).getAristas().get(j).setNodoInicial(grafo.getNodos().get(grafo.getNodos().get(i).getAristas().get(j).getInicial()));
-                            grafo.getNodos().get(i).getAristas().get(j).setNodoFinal(grafo.getNodos().get(grafo.getNodos().get(i).getAristas().get(j).getFinall()));
-                        }
+                    for (int j = 0; j < grafo.getNodos().get(i).getAristas().size(); j++) {
+                        grafo.getNodos().get(i).getAristas().get(j).setNodoInicial(grafo.getNodos().get(grafo.getNodos().get(i).getAristas().get(j).getInicial()));
+                        grafo.getNodos().get(i).getAristas().get(j).setNodoFinal(grafo.getNodos().get(grafo.getNodos().get(i).getAristas().get(j).getFinall()));
                     }
-                    iteradorabc = grafo.getNodos().size();
-                    
-                    
+                }
+                iteradorabc = grafo.getNodos().size();
+
             } catch (Exception e) {
-                
-            }finally{
+
+            } finally {
                 try {
                     reader.close();
                     fr.close();
@@ -840,7 +842,7 @@ public class Tonelitos extends javax.swing.JFrame {
             nodosMauricio = grafo.getNodos();
             System.out.println(grafo.getNodos().size());
         }
-        
+
     }//GEN-LAST:event_jButton14ActionPerformed
 
     /**
@@ -882,19 +884,14 @@ public class Tonelitos extends javax.swing.JFrame {
     }
 
     public void refresh() {
-       
-        
+
         //jp_graphics.updateUI();
-        
-        
         //g.clearRect(0, 0, jp_graphics.getWidth(), jp_graphics.getHeight());
-        
         //jp_graphics.removeAll();
-        Font font = new Font ("Dialog",Font.BOLD,14);
+        Font font = new Font("Dialog", Font.BOLD, 14);
         Graphics g = this.jp_graphics.getGraphics();
         g.setFont(font);
-        
-        
+
         for (int i = 0; i < grafo.getNodos().size(); i++) {
             g.setColor(Color.RED);
             g.drawOval(grafo.getNodos().get(i).getCoordenada().getX(),
@@ -910,36 +907,34 @@ public class Tonelitos extends javax.swing.JFrame {
         int x1, x2, y1, y2;
 
         for (int i = 0; i < grafo.getNodos().size(); i++) {
-            
+
             for (int j = 0; j < grafo.getNodos().get(i).getAristas().size(); j++) {
                 try {
-                    x1 =  grafo.getNodos().get(i).getAristas().get(j).getNodoInicial().getID();
-                    y1 =  grafo.getNodos().get(i).getAristas().get(j).getNodoInicial().getID();
-                    x2 =  grafo.getNodos().get(i).getAristas().get(j).getNodoFinal().getID();
-                    y2 =  grafo.getNodos().get(i).getAristas().get(j).getNodoFinal().getID();
+                    x1 = grafo.getNodos().get(i).getAristas().get(j).getNodoInicial().getID();
+                    y1 = grafo.getNodos().get(i).getAristas().get(j).getNodoInicial().getID();
+                    x2 = grafo.getNodos().get(i).getAristas().get(j).getNodoFinal().getID();
+                    y2 = grafo.getNodos().get(i).getAristas().get(j).getNodoFinal().getID();
                     g.setColor(Color.RED);
                     g.drawLine(grafo.getNodos().get(x1).getCoordenada().getX() + 15,
-                        grafo.getNodos().get(y1).getCoordenada().getY()+15,
-                        grafo.getNodos().get(x2).getCoordenada().getX()+15,
-                        grafo.getNodos().get(y2).getCoordenada().getY()+15);
+                            grafo.getNodos().get(y1).getCoordenada().getY() + 15,
+                            grafo.getNodos().get(x2).getCoordenada().getX() + 15,
+                            grafo.getNodos().get(y2).getCoordenada().getY() + 15);
                     g.setColor(Color.BLUE);
-                    g.drawString(Long.toString(grafo.getNodos().get(i).getAristas().get(j).getDistancia()), 
-                            ((grafo.getNodos().get(x1).getCoordenada().getX()+15)+(grafo.getNodos().get(x2).getCoordenada().getX()+15))/2, ((grafo.getNodos().get(y1).getCoordenada().getY()+15)+(grafo.getNodos().get(y2).getCoordenada().getY()+15))/2);
+                    g.drawString(Long.toString(grafo.getNodos().get(i).getAristas().get(j).getDistancia()),
+                            ((grafo.getNodos().get(x1).getCoordenada().getX() + 15) + (grafo.getNodos().get(x2).getCoordenada().getX() + 15)) / 2, ((grafo.getNodos().get(y1).getCoordenada().getY() + 15) + (grafo.getNodos().get(y2).getCoordenada().getY() + 15)) / 2);
                     g.setColor(Color.RED);
-                    
+
                 } catch (Exception e) {
                 }
-                
 
             }
 
         }
-        
+
         for (int i = 0; i < grafo.getNodos().size(); i++) {
             g.setColor(Color.BLACK);
-            g.drawString(grafo.getNodos().get(i).getNombre(),grafo.getNodos().get(i).getCoordenada().getX()+10 
-                    , grafo.getNodos().get(i).getCoordenada().getY()+18);
-            
+            g.drawString(grafo.getNodos().get(i).getNombre(), grafo.getNodos().get(i).getCoordenada().getX() + 10, grafo.getNodos().get(i).getCoordenada().getY() + 18);
+
         }
 
     }
@@ -951,12 +946,9 @@ public class Tonelitos extends javax.swing.JFrame {
         Dialog.setVisible(true);
 
     }
-    
-    public boolean isCompletelyRelated(){
-        
-        
-        
-        
+
+    public boolean isCompletelyRelated() {
+
         return false;
     }
 
@@ -1000,6 +992,7 @@ public class Tonelitos extends javax.swing.JFrame {
     private javax.swing.JPanel jp_lblparent;
     // End of variables declaration//GEN-END:variables
     private Color red = Color.RED;
+    private Long route = 0L;
     private Grafo grafo = new Grafo();
     private int contadorNodos = 0;
     private ImageIcon icon = null;
@@ -1008,16 +1001,16 @@ public class Tonelitos extends javax.swing.JFrame {
     private Image img, newImg;
     private ArrayList<Integer> tempDijkstra = new ArrayList();
     private ArrayList<Integer> tempFloyd = new ArrayList();
-    private boolean hasDijkstra=false;
-    private boolean hasFloyd=false;
-    private String Abecedario[] ={"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R",
-    "S","T","U","V","W","X","Y","Z","A1","B1","C1","D1","E1","F1","G1","H1","I1","J1","K1","L1","M1","N1","O1","P1","Q1","R1",
-    "S1","T1","U1","V1","W1","X1","Y1","Z1","A2","B2","C2","D2","E2","F2","G2","H2","I2","J2","K2","L2","M2","N2","O2","P2","Q2","R2",
-    "S2","T2","U2","V2","W2","X2","Y2","Z2"};
+    private boolean hasDijkstra = false;
+    private boolean hasFloyd = false;
+    private String Abecedario[] = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R",
+        "S", "T", "U", "V", "W", "X", "Y", "Z", "A1", "B1", "C1", "D1", "E1", "F1", "G1", "H1", "I1", "J1", "K1", "L1", "M1", "N1", "O1", "P1", "Q1", "R1",
+        "S1", "T1", "U1", "V1", "W1", "X1", "Y1", "Z1", "A2", "B2", "C2", "D2", "E2", "F2", "G2", "H2", "I2", "J2", "K2", "L2", "M2", "N2", "O2", "P2", "Q2", "R2",
+        "S2", "T2", "U2", "V2", "W2", "X2", "Y2", "Z2"};
     private int iteradorabc = 0;
     boolean dimsensionar = false;
     private ArrayList<Node> nodosMauricio = new ArrayList();
-    
+
     public static Long ruta(int x, int y, Long[][] pond) {
         return pond[x][y];
     }
@@ -1091,6 +1084,30 @@ public class Tonelitos extends javax.swing.JFrame {
         }
 
     }
+    int SIZE = nodosMauricio.size();
+    Node[][] fabricioMatrix = new Node[SIZE][SIZE];
+    
+    public ArrayList<Node> PorDondePasa (Node[][] fabricioMatrix, int origin, int destiny){
+        Node origen = nodosMauricio.get(origin);
+        Node destino = nodosMauricio.get(destiny);
+        ArrayList<Node> caminos = new ArrayList();
+        while(fabricioMatrix[origin][destiny] != destino){
+            caminos.add(destino);
+            destiny = nodosMauricio.indexOf(destino);
+            destino = nodosMauricio.get(destiny);
+        }
+        caminos.add(origen);
+        
+        
+        return flip(caminos);
+    }
+    
+    public ArrayList<Node> flip (ArrayList<Node> fabri){
+        ArrayList<Node> nodo = new ArrayList();
+        for (int i = 0; i < fabri.size(); i++) {
+            nodo.add(fabri.get(fabri.size()-1-i));
+        }
+        return nodo;
+    }
 
 }
-
