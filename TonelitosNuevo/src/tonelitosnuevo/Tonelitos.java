@@ -82,6 +82,7 @@ public class Tonelitos extends javax.swing.JFrame {
         jl_image = new javax.swing.JLabel();
         jButton7 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
+        jButton14 = new javax.swing.JButton();
 
         jLabel1.setText("Vértice Inicial");
 
@@ -326,7 +327,7 @@ public class Tonelitos extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Exportar Reporte");
+        jButton1.setText("Exportar Grafo");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -419,6 +420,13 @@ public class Tonelitos extends javax.swing.JFrame {
             }
         });
 
+        jButton14.setText("Importar Grafo");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -433,6 +441,7 @@ public class Tonelitos extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton11)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButton7)
                                 .addGap(18, 18, 18)
@@ -440,10 +449,11 @@ public class Tonelitos extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jb_addImage)
                                 .addGap(18, 18, 18)
+                                .addComponent(jButton3)
+                                .addGap(18, 18, 18)
                                 .addComponent(jButton1)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton3))
-                            .addComponent(jButton11))
+                                .addComponent(jButton14)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -462,7 +472,8 @@ public class Tonelitos extends javax.swing.JFrame {
                     .addComponent(jButton1)
                     .addComponent(jButton3)
                     .addComponent(jButton7)
-                    .addComponent(jButton2))
+                    .addComponent(jButton2)
+                    .addComponent(jButton14))
                 .addGap(18, 18, 18)
                 .addComponent(jButton11)
                 .addContainerGap())
@@ -495,7 +506,51 @@ public class Tonelitos extends javax.swing.JFrame {
     }//GEN-LAST:event_jb_addImageActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       
+        JFileChooser chooser = new JFileChooser();
+        
+        int seleccion  = chooser.showSaveDialog(this);
+        if (seleccion == JFileChooser.APPROVE_OPTION){
+            File file=null;
+            FileWriter fw=null;
+            BufferedWriter writer = null;
+            try {
+                file = chooser.getSelectedFile();
+                fw = new FileWriter (file);
+                writer = new BufferedWriter (fw);
+                if (fw == null || writer == null ){
+                    
+                }else{
+                    for (int i = 0; i < grafo.getNodos().size(); i++) {
+                    writer.write(grafo.getNodos().get(i).getID()+",");
+                    writer.write(grafo.getNodos().get(i).getNombre()+",");
+                    writer.write(grafo.getNodos().get(i).getCoordenada().getX()+",");
+                    if (grafo.getNodos().get(i).getAristas().isEmpty()){
+                        writer.write(grafo.getNodos().get(i).getCoordenada().getY());
+                    }else{
+                        writer.write(grafo.getNodos().get(i).getCoordenada().getY()+";");
+                    }
+                        for (int j = 0; j < grafo.getNodos().get(i).getAristas().size(); j++) {
+                            writer.write(grafo.getNodos().get(i).getAristas().get(j).getNodoInicial().getID()+"/");
+                            writer.write(grafo.getNodos().get(i).getAristas().get(j).getNodoFinal().getID()+"/");
+                            writer.write(Long.toString(grafo.getNodos().get(i).getAristas().get(j).getDistancia())+";");
+                        }
+                    writer.write("\n");
+                    }
+                    writer.flush();
+                }
+                
+            } catch (Exception e) {
+            } finally{
+                try {
+                    writer.close();
+                    fw.close();
+                } catch (Exception e) {
+                }
+                
+            }
+        }
+        
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -674,6 +729,10 @@ public class Tonelitos extends javax.swing.JFrame {
         */
     }//GEN-LAST:event_jButton10ActionPerformed
 
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton14ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -786,6 +845,7 @@ public class Tonelitos extends javax.swing.JFrame {
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
+    private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
