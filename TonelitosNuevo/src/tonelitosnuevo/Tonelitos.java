@@ -752,17 +752,21 @@ public class Tonelitos extends javax.swing.JFrame {
         ArrayList<Node> ruta = PorDondePasa(fabricioMatrix,jc_inicialFloyd.getSelectedIndex(), jc_finalFloyd.getSelectedIndex());
         */
         DefaultListModel model = new DefaultListModel();
-        
+        model.addElement("Ponderaciones");
         for (int i = 0; i < ponderaciones.length; i++) {
             for (int j = 0; j < ponderaciones[i].length; j++) {
-                if (ponderaciones[i][j] < 1){
-                    
+                if (ponderaciones[i][j] < 0){
                 }else{
-                    model.addElement(ponderaciones[i][j]);
+                    String temp= "     "+ponderaciones[i][j];
+                    model.addElement(temp);
+                    
+        
                 }
-                
+               
             }
         }
+        
+        Print(ponderaciones);
         this.jl_Floyd.setModel(model);
         openDialog(this.listaFloyd);
         /*
@@ -1077,7 +1081,7 @@ public class Tonelitos extends javax.swing.JFrame {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 if (pond[i][j] == null) {
-                    pond[i][j] = Long.MAX_VALUE;
+                    pond[i][j] = 100000L;
                 }
             }
         }
@@ -1102,7 +1106,8 @@ public class Tonelitos extends javax.swing.JFrame {
         System.out.println("caminos");
         for (int i = 0; i < caminos.length; i++) {
             for (int j = 0; j < caminos[i].length; j++) {
-                System.out.printf("%5d", caminos[i][j]);
+                System.out.printf("%5d", caminos[i][j]+"\n");
+                
             }
             System.out.println("");
         }
