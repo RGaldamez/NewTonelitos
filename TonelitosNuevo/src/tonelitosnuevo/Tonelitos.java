@@ -10,8 +10,10 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.Icon;
@@ -511,14 +513,16 @@ public class Tonelitos extends javax.swing.JFrame {
         int seleccion  = chooser.showSaveDialog(this);
         if (seleccion == JFileChooser.APPROVE_OPTION){
             File file=null;
+            File temp;
             FileWriter fw=null;
             BufferedWriter writer = null;
             try {
-                file = chooser.getSelectedFile();
+                temp = chooser.getSelectedFile();
+                file = new File(temp.getAbsolutePath()+".grph");
                 fw = new FileWriter (file);
                 writer = new BufferedWriter (fw);
                 if (fw == null || writer == null ){
-                    
+                    System.err.println("es 0.0000000000000000000000000000000001% probable que esta linea salga, revisar exportacion de grafo");
                 }else{
                     for (int i = 0; i < grafo.getNodos().size(); i++) {
                     writer.write(grafo.getNodos().get(i).getID()+",");
@@ -730,7 +734,63 @@ public class Tonelitos extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-        // TODO add your handling code here:
+        FileNameExtensionFilter filter = new FileNameExtensionFilter ("grph");
+        
+        JFileChooser chooser = new JFileChooser();
+        chooser.setFileFilter(filter);
+        int seleccion = chooser.showOpenDialog(this);
+        
+        if (seleccion == JFileChooser.APPROVE_OPTION){
+            this.setSize(this.getWidth()+1, this.getHeight()+1);
+            this.setSize(this.getWidth()-1, this.getHeight()-1);
+            String stringGeneral;
+            String []nodos;
+            int contadorNodos =0;
+            String generalAristas;
+            String []aristas;
+            Node nodeTemp;
+            Arista aristaTemp;
+            int contadorAristas = 0;
+            int indexhasAristas=-1;
+            boolean hasAristas = false;
+            File file = chooser.getSelectedFile();
+            FileReader fr = null;
+            BufferedReader reader = null;
+            try {
+                fr = new FileReader(file);
+                reader = new BufferedReader(fr);
+                
+                while ((stringGeneral = reader.readLine())!=null){
+                    //confirma que tiene aristas desde un principio
+                    for (int i = 0; i < stringGeneral.length(); i++) {
+                        if (stringGeneral.charAt(i) == ';'){
+                            hasAristas = true;
+                            indexhasAristas = i;
+                            break;
+                        }
+                    }
+                    nodos = stringGeneral.split(",");
+                    if (hasAristas){
+                        generalAristas = "";
+                        for (int i = indexhasAristas; i < stringGeneral.length(); i++) {
+                            generalAristas+=stringGeneral.charAt(i);
+                        }
+                        aristas = generalAristas.split(";");
+                        
+  
+                    }else{
+                      
+                    }
+                    
+                }
+            } catch (Exception e) {
+                
+            }
+            ////////////////// RECORDAR HACER QUE LAS ARISTAS SEAN VALIDAS!!!!!!!!!!!!!!!!!!!!!!!!!!
+            JOptionPane.showMessageDialog(this, "Grafo agregado con exito");
+            refresh();
+        }
+        
     }//GEN-LAST:event_jButton14ActionPerformed
 
     /**

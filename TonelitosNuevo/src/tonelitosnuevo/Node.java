@@ -7,7 +7,6 @@ public class Node {
     private Object value;
     private Node next;
     private int ID;
-    private int IDtemp;
     private String Nombre;
     private Coordenada coordenada;
     private ArrayList<Arista> aristas = new ArrayList();
@@ -26,16 +25,13 @@ public class Node {
         this.coordenada = coordenada;
     }
 
-    public Node(int ID, int IDtemp, String Nombre, Coordenada coordenada, ArrayList<Arista> aristas) {
+    public Node(int ID, String Nombre, Coordenada coordenada, ArrayList<Arista> aristas) {
         this.ID = ID;
-        this.IDtemp = IDtemp;
         this.Nombre = Nombre;
         this.coordenada = coordenada;
         this.aristas = aristas;
     }
     
-    
-
     public Node() {
         value = null;
     }
