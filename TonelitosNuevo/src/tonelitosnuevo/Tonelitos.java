@@ -742,11 +742,11 @@ public class Tonelitos extends javax.swing.JFrame {
         int seleccion = chooser.showOpenDialog(this);
         
         if (seleccion == JFileChooser.APPROVE_OPTION){
+            grafo = new Grafo();
             this.setSize(this.getWidth()+1, this.getHeight()+1);
             this.setSize(this.getWidth()-1, this.getHeight()-1);
             String stringGeneral;
             String []nodos;
-            int contadorNodos =0;
             String generalAristas;
             String []aristas;
             String []datosArista;
@@ -773,7 +773,7 @@ public class Tonelitos extends javax.swing.JFrame {
                     for (int i = 0; i < stringGeneral.length(); i++) {
                         if (stringGeneral.charAt(i) == ';'){
                             hasAristas = true;
-                            indexhasAristas = i;
+                            indexhasAristas = i+1;
                             break;
                         }
                     }
@@ -788,6 +788,15 @@ public class Tonelitos extends javax.swing.JFrame {
                         
                         
                         /////////////aqui se pone bueno
+                        ID = Integer.parseInt(nodos[0]);
+                        Nombre = nodos[1];
+                        X = Integer.parseInt(nodos[2]);
+                        Y = Integer.parseInt(nodos[3]);
+                        nodeTemp = new Node (ID,Nombre,new Coordenada (X,Y));
+                        for (String arista : aristas) {
+                            datosArista = arista.split("/");
+                        }
+                        
                         
   
                     }else{

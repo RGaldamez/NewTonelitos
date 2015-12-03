@@ -14,6 +14,11 @@ import java.util.ArrayList;
 public class Grafo {
     
     private ArrayList<Node> nodos = new ArrayList();
+
+    public Grafo() {
+        nodos = new ArrayList();
+    }
+
     
     public Node First(Node vertex){
         if (nodos.get(vertex.getID()).getAristas().get(0).getNodoFinal() == null
