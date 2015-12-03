@@ -529,16 +529,17 @@ public class Tonelitos extends javax.swing.JFrame {
                     writer.write(grafo.getNodos().get(i).getNombre()+",");
                     writer.write(grafo.getNodos().get(i).getCoordenada().getX()+",");
                     if (grafo.getNodos().get(i).getAristas().isEmpty()){
-                        writer.write(grafo.getNodos().get(i).getCoordenada().getY()+"");
+                        writer.write(grafo.getNodos().get(i).getCoordenada().getY()+",");
                     }else{
-                        writer.write(grafo.getNodos().get(i).getCoordenada().getY()+";");
-                    }
+                        writer.write(grafo.getNodos().get(i).getCoordenada().getY()+",;");
                         for (int j = 0; j < grafo.getNodos().get(i).getAristas().size(); j++) {
                             writer.write(grafo.getNodos().get(i).getAristas().get(j).getNodoInicial().getID()+"/");
                             writer.write(grafo.getNodos().get(i).getAristas().get(j).getNodoFinal().getID()+"/");
-                            writer.write(Long.toString(grafo.getNodos().get(i).getAristas().get(j).getDistancia())+";");
+                            writer.write(Long.toString(grafo.getNodos().get(i).getAristas().get(j).getDistancia())+"/;");
                         }
-                    writer.write("\n");
+                    }
+                        
+                    writer.write("\r");
                     }
                     writer.flush();
                     JOptionPane.showMessageDialog(this, "Archivo creado con exito");
@@ -735,10 +736,10 @@ public class Tonelitos extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-        FileNameExtensionFilter filter = new FileNameExtensionFilter ("grph");
+        //FileNameExtensionFilter filter = new FileNameExtensionFilter ("Archivo de grafo","grph");
         
         JFileChooser chooser = new JFileChooser();
-        chooser.setFileFilter(filter);
+        //chooser.setFileFilter(filter);
         int seleccion = chooser.showOpenDialog(this);
         
         if (seleccion == JFileChooser.APPROVE_OPTION){
@@ -746,19 +747,15 @@ public class Tonelitos extends javax.swing.JFrame {
             this.setSize(this.getWidth()+1, this.getHeight()+1);
             this.setSize(this.getWidth()-1, this.getHeight()-1);
             String stringGeneral;
+            String generalTemp;
             String []nodos;
             String generalAristas;
             String []aristas;
             String []datosArista;
-            int tamañoAristas;
-            Node nodeTemp;
             int ID;
             String Nombre;
             int X;
             int Y;
-            Coordenada coordenada;
-            Arista aristaTemp;
-            int contadorAristas = 0;
             int indexhasAristas=-1;
             boolean hasAristas = false;
             File file = chooser.getSelectedFile();
@@ -768,7 +765,9 @@ public class Tonelitos extends javax.swing.JFrame {
                 fr = new FileReader(file);
                 reader = new BufferedReader(fr);
                 
-                while ((stringGeneral = reader.readLine())!=null){
+                while ((generalTemp = reader.readLine())!=null){
+                    stringGeneral = generalTemp;
+                    System.out.println(stringGeneral);
                     //confirma que tiene aristas desde un principio
                     for (int i = 0; i < stringGeneral.length(); i++) {
                         if (stringGeneral.charAt(i) == ';'){
@@ -792,24 +791,49 @@ public class Tonelitos extends javax.swing.JFrame {
                         Nombre = nodos[1];
                         X = Integer.parseInt(nodos[2]);
                         Y = Integer.parseInt(nodos[3]);
-                        nodeTemp = new Node (ID,Nombre,new Coordenada (X,Y));
+                        grafo.getNodos().add(new Node(ID,Nombre,new Coordenada (X,Y)));
                         for (String arista : aristas) {
                             datosArista = arista.split("/");
+                            grafo.getNodos().get(grafo.getNodos().size()-1).getAristas().add(new Arista (Long.parseLong(datosArista[2]),
+                                    Integer.parseInt(datosArista[0]),
+                                    Integer.parseInt(datosArista[1])));
                         }
-                        
-                        
-  
                     }else{
-                      
+                        nodos = stringGeneral.split(",");
+                          
+                        ID = Integer.parseInt(nodos[0]);
+                        Nombre = nodos[1];
+                        X = Integer.parseInt(nodos[2]);
+                        Y = Integer.parseInt(nodos[3]);
+                        grafo.getNodos().add(new Node(ID,Nombre,new Coordenada (X,Y)));
                     }
                     
+                    
+                    
                 }
+                for (int i = 0; i < grafo.getNodos().size(); i++) {
+                        for (int j = 0; j < grafo.getNodos().get(i).getAristas().size(); j++) {
+                            grafo.getNodos().get(i).getAristas().get(j).setNodoInicial(grafo.getNodos().get(grafo.getNodos().get(i).getAristas().get(j).getInicial()));
+                            grafo.getNodos().get(i).getAristas().get(j).setNodoFinal(grafo.getNodos().get(grafo.getNodos().get(i).getAristas().get(j).getFinall()));
+                        }
+                    }
+                    iteradorabc = grafo.getNodos().size();
+                    
+                    
             } catch (Exception e) {
                 
+            }finally{
+                try {
+                    reader.close();
+                    fr.close();
+                } catch (Exception e) {
+                }
             }
             ////////////////// RECORDAR HACER QUE LAS ARISTAS SEAN VALIDAS!!!!!!!!!!!!!!!!!!!!!!!!!!
+            ///////////////// TAMBIEN SETEAR EL contadorabc
             JOptionPane.showMessageDialog(this, "Grafo agregado con exito");
             refresh();
+            System.out.println(grafo.getNodos().size());
         }
         
     }//GEN-LAST:event_jButton14ActionPerformed
@@ -969,7 +993,8 @@ public class Tonelitos extends javax.swing.JFrame {
     private boolean hasFloyd=false;
     private String Abecedario[] ={"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R",
     "S","T","U","V","W","X","Y","Z","A1","B1","C1","D1","E1","F1","G1","H1","I1","J1","K1","L1","M1","N1","O1","P1","Q1","R1",
-    "S1","T1","U1","V1","W1","X1","Y1","Z1"};
+    "S1","T1","U1","V1","W1","X1","Y1","Z1","A2","B2","C2","D2","E2","F2","G2","H2","I2","J2","K2","L2","M2","N2","O2","P2","Q2","R2",
+    "S2","T2","U2","V2","W2","X2","Y2","Z2"};
     private int iteradorabc = 0;
     boolean dimsensionar = false;
 

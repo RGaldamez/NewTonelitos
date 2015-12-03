@@ -17,6 +17,14 @@ public class Node {
     public Node(Object value) {
         this.value = value;
     }
+
+    public Node(int ID, String Nombre, int X, int Y) {
+        this.ID = ID;
+        this.Nombre = Nombre;
+        coordenada.setX(X);
+        coordenada.setY(Y);
+    }
+    
     
     public Node(Object value, Node next, int ID, Coordenada coordenada) {
         this.value = value;
