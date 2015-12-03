@@ -625,6 +625,7 @@ public class Tonelitos extends javax.swing.JFrame {
             grafo.getNodos().get(grafo.getNodos().size() - 1).setID(grafo.getNodos().size()-1);
             grafo.getNodos().get(grafo.getNodos().size()-1).setNombre(Abecedario[iteradorabc]);
             iteradorabc++;
+            this.nodosMauricio = grafo.getNodos();
 
             refresh();
             addVertex = false;
@@ -661,7 +662,7 @@ public class Tonelitos extends javax.swing.JFrame {
 
         this.jc_vertice.setModel(model3);
         JOptionPane.showMessageDialog(this,"Vértice eliminado con exito, por favor cerrar esta ventana para mostrar los cambios","",JOptionPane.INFORMATION_MESSAGE);
-        
+        nodosMauricio = grafo.getNodos();
 
         
         refresh();
@@ -836,6 +837,7 @@ public class Tonelitos extends javax.swing.JFrame {
             ///////////////// TAMBIEN SETEAR EL contadorabc
             JOptionPane.showMessageDialog(this, "Grafo agregado con exito");
             refresh();
+            nodosMauricio = grafo.getNodos();
             System.out.println(grafo.getNodos().size());
         }
         
@@ -1014,6 +1016,7 @@ public class Tonelitos extends javax.swing.JFrame {
     "S2","T2","U2","V2","W2","X2","Y2","Z2"};
     private int iteradorabc = 0;
     boolean dimsensionar = false;
+    private ArrayList<Node> nodosMauricio = new ArrayList();
 
 }
 
