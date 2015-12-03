@@ -117,7 +117,7 @@ public class Grafo {
         }
     }
      
-    public ArrayList<Arista> summonDijkstra(int ORIGIN,  int DESTINY){
+    public int summonDijkstra(int ORIGIN,  int DESTINY){
         ArrayList<Boolean> permanents= new ArrayList();
         ArrayList<Integer> dijkstraNumber = new ArrayList();
         ArrayList<ArrayList<Arista>> dijkstraPath = new ArrayList();
@@ -164,7 +164,7 @@ public class Grafo {
             otherPermanents.add(nodos.get(num_temp));
         }
         
-        return dijkstraPath.get(DESTINY);
+        return dijkstraNumber.get(DESTINY);
     }
 
     public ArrayList<Node> getNodos() {

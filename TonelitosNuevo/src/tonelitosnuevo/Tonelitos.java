@@ -25,6 +25,7 @@ import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 
 /**
  *
@@ -66,14 +67,18 @@ public class Tonelitos extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
         Floyd = new javax.swing.JDialog();
         jc_inicialFloyd = new javax.swing.JComboBox();
         jc_finalFloyd = new javax.swing.JComboBox();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jButton10 = new javax.swing.JButton();
-        jButton13 = new javax.swing.JButton();
+        listaFloyd = new javax.swing.JDialog();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jl_Floyd = new javax.swing.JList();
+        listaDijkstra = new javax.swing.JDialog();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jl_Dijkstra = new javax.swing.JList();
         jb_addImage = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jp_lblparent = new javax.swing.JPanel();
@@ -217,13 +222,6 @@ public class Tonelitos extends javax.swing.JFrame {
             }
         });
 
-        jButton12.setText("Generar Reporte");
-        jButton12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton12ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout DijkstraLayout = new javax.swing.GroupLayout(Dijkstra.getContentPane());
         Dijkstra.getContentPane().setLayout(DijkstraLayout);
         DijkstraLayout.setHorizontalGroup(
@@ -240,9 +238,7 @@ public class Tonelitos extends javax.swing.JFrame {
                 .addGap(92, 92, 92))
             .addGroup(DijkstraLayout.createSequentialGroup()
                 .addGap(120, 120, 120)
-                .addGroup(DijkstraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton12)
-                    .addComponent(jButton5))
+                .addComponent(jButton5)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         DijkstraLayout.setVerticalGroup(
@@ -258,9 +254,7 @@ public class Tonelitos extends javax.swing.JFrame {
                     .addComponent(jc_finalDijkstra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(76, 76, 76)
                 .addComponent(jButton5)
-                .addGap(18, 18, 18)
-                .addComponent(jButton12)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(95, Short.MAX_VALUE))
         );
 
         jLabel5.setText("Nodo Inicial");
@@ -271,13 +265,6 @@ public class Tonelitos extends javax.swing.JFrame {
         jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton10ActionPerformed(evt);
-            }
-        });
-
-        jButton13.setText("Generar Reporte");
-        jButton13.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton13ActionPerformed(evt);
             }
         });
 
@@ -297,9 +284,7 @@ public class Tonelitos extends javax.swing.JFrame {
                 .addGap(92, 92, 92))
             .addGroup(FloydLayout.createSequentialGroup()
                 .addGap(120, 120, 120)
-                .addGroup(FloydLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton13)
-                    .addComponent(jButton10))
+                .addComponent(jButton10)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         FloydLayout.setVerticalGroup(
@@ -315,9 +300,45 @@ public class Tonelitos extends javax.swing.JFrame {
                     .addComponent(jc_finalFloyd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(76, 76, 76)
                 .addComponent(jButton10)
-                .addGap(27, 27, 27)
-                .addComponent(jButton13)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(95, Short.MAX_VALUE))
+        );
+
+        jScrollPane2.setViewportView(jl_Floyd);
+
+        javax.swing.GroupLayout listaFloydLayout = new javax.swing.GroupLayout(listaFloyd.getContentPane());
+        listaFloyd.getContentPane().setLayout(listaFloydLayout);
+        listaFloydLayout.setHorizontalGroup(
+            listaFloydLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, listaFloydLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        listaFloydLayout.setVerticalGroup(
+            listaFloydLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, listaFloydLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jScrollPane1.setViewportView(jl_Dijkstra);
+
+        javax.swing.GroupLayout listaDijkstraLayout = new javax.swing.GroupLayout(listaDijkstra.getContentPane());
+        listaDijkstra.getContentPane().setLayout(listaDijkstraLayout);
+        listaDijkstraLayout.setHorizontalGroup(
+            listaDijkstraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(listaDijkstraLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(32, Short.MAX_VALUE))
+        );
+        listaDijkstraLayout.setVerticalGroup(
+            listaDijkstraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(listaDijkstraLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -696,16 +717,16 @@ public class Tonelitos extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        ArrayList<Arista> aristasDijkstra = new ArrayList();
+
 
         int indexInicial = jc_inicialDijkstra.getSelectedIndex();
         int indexFinal = jc_finalDijkstra.getSelectedIndex();
 
-        aristasDijkstra = grafo.summonDijkstra(indexInicial, indexFinal);
+        int cosa = grafo.summonDijkstra(indexInicial, indexFinal);
+        JOptionPane.showMessageDialog(this, "La suma de los recorridos mas cortos de el nodo inicial al nodo final es: "+cosa);
 
-        for (int i = 0; i < aristasDijkstra.size(); i++) {
-            System.out.println(aristasDijkstra.get(i).toString());
-        }
+        
+        
 
         hasDijkstra = true;
 
@@ -715,25 +736,35 @@ public class Tonelitos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jc_inicialDijkstraActionPerformed
 
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-
-    }//GEN-LAST:event_jButton12ActionPerformed
-
-    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        
-    }//GEN-LAST:event_jButton13ActionPerformed
-
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        
         Long[][] ponderaciones = Cancer(nodosMauricio.size(), nodosMauricio);
         int[][] caminos = llenarCaminos(nodosMauricio.size());
         Floyd(nodosMauricio.size(), caminos, ponderaciones);
         route = ruta(jc_inicialFloyd.getSelectedIndex(), jc_finalFloyd.getSelectedIndex(), ponderaciones);
+        /*
         for (int i = 0; i < caminos.length; i++) {
             for (int j = 0; j < caminos[0].length; j++) {
                 fabricioMatrix[i][j] = nodosMauricio.get(caminos[i][j]);
             }
         }
+        
         ArrayList<Node> ruta = PorDondePasa(fabricioMatrix,jc_inicialFloyd.getSelectedIndex(), jc_finalFloyd.getSelectedIndex());
+        */
+        DefaultListModel model = new DefaultListModel();
+        
+        for (int i = 0; i < ponderaciones.length; i++) {
+            for (int j = 0; j < ponderaciones[i].length; j++) {
+                if (ponderaciones[i][j] < 1){
+                    
+                }else{
+                    model.addElement(ponderaciones[i][j]);
+                }
+                
+            }
+        }
+        this.jl_Floyd.setModel(model);
+        openDialog(this.listaFloyd);
         /*
         int indexInicial = this.jc_inicialFloyd.getSelectedIndex();
         int indexFinal = this.jc_finalFloyd.getSelectedIndex();
@@ -959,8 +990,6 @@ public class Tonelitos extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -977,6 +1006,8 @@ public class Tonelitos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton jb_addImage;
     private javax.swing.JComboBox jc_final;
     private javax.swing.JComboBox jc_finalDijkstra;
@@ -987,9 +1018,13 @@ public class Tonelitos extends javax.swing.JFrame {
     private javax.swing.JComboBox jc_vertice;
     private javax.swing.JDialog jd_eraseRelations;
     private javax.swing.JDialog jd_relations;
+    private javax.swing.JList jl_Dijkstra;
+    private javax.swing.JList jl_Floyd;
     private javax.swing.JLabel jl_image;
     private javax.swing.JPanel jp_graphics;
     private javax.swing.JPanel jp_lblparent;
+    private javax.swing.JDialog listaDijkstra;
+    private javax.swing.JDialog listaFloyd;
     // End of variables declaration//GEN-END:variables
     private Color red = Color.RED;
     private Long route = 0L;
