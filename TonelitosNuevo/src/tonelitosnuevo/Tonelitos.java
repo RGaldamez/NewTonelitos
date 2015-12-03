@@ -699,20 +699,20 @@ public class Tonelitos extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        /*
+        ArrayList<Arista> aristasDijkstra = new ArrayList();
         
         int indexInicial = jc_inicialDijkstra.getSelectedIndex();
         int indexFinal = jc_finalDijkstra.getSelectedIndex();
         
-        DefaultTableModel model = new DefaultTableModel();
-        tempDijkstra = grafo.Dijkstra(grafo.getNodos().get(indexInicial), 
-                grafo.getNodos().get(indexFinal));
+        aristasDijkstra = grafo.summonDijkstra(indexInicial,indexFinal);
         
-        for (int i = 0; i < tempDijkstra.size(); i++) {
-            System.out.println(tempDijkstra.get(i).getValue()+"");
+        for (int i = 0; i < aristasDijkstra.size(); i++) {
+            System.out.println(aristasDijkstra.get(i).getDistancia());
         }
+        
+        
         hasDijkstra = true;
-        */
+        
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jc_inicialDijkstraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jc_inicialDijkstraActionPerformed
@@ -922,6 +922,11 @@ public class Tonelitos extends javax.swing.JFrame {
                         grafo.getNodos().get(y1).getCoordenada().getY()+15,
                         grafo.getNodos().get(x2).getCoordenada().getX()+15,
                         grafo.getNodos().get(y2).getCoordenada().getY()+15);
+                    g.setColor(Color.BLUE);
+                    g.drawString(Long.toString(grafo.getNodos().get(i).getAristas().get(j).getDistancia()), 
+                            ((grafo.getNodos().get(x1).getCoordenada().getX()+15)+(grafo.getNodos().get(x2).getCoordenada().getX()+15))/2, ((grafo.getNodos().get(y1).getCoordenada().getY()+15)+(grafo.getNodos().get(y2).getCoordenada().getY()+15))/2);
+                    g.setColor(Color.RED);
+                    
                 } catch (Exception e) {
                 }
                 
@@ -934,6 +939,7 @@ public class Tonelitos extends javax.swing.JFrame {
             g.setColor(Color.BLACK);
             g.drawString(grafo.getNodos().get(i).getNombre(),grafo.getNodos().get(i).getCoordenada().getX()+10 
                     , grafo.getNodos().get(i).getCoordenada().getY()+18);
+            
         }
 
     }
