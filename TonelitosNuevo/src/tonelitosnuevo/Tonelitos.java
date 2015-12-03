@@ -619,7 +619,7 @@ public class Tonelitos extends javax.swing.JFrame {
         int x = evt.getX();
         int y = evt.getY();
 
-        if (addVertex && this.jl_image.getIcon() != null) {
+        
             grafo.getNodos().add(new Node());
             grafo.getNodos().get(grafo.getNodos().size() - 1).setCoordenada(new Coordenada(x - 10, y - 10));
             grafo.getNodos().get(grafo.getNodos().size() - 1).setID(grafo.getNodos().size()-1);
@@ -628,10 +628,8 @@ public class Tonelitos extends javax.swing.JFrame {
 
             refresh();
             addVertex = false;
-        } else if (addVertex && this.jl_image.getIcon() == null) {
-            JOptionPane.showMessageDialog(this, "Porfavor ingrese un mapa primero", "Error", JOptionPane.ERROR_MESSAGE);
-            addVertex = false;
-        }
+            
+        
     }//GEN-LAST:event_jp_graphicsMouseClicked
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
