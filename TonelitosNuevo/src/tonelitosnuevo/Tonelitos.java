@@ -1017,6 +1017,80 @@ public class Tonelitos extends javax.swing.JFrame {
     private int iteradorabc = 0;
     boolean dimsensionar = false;
     private ArrayList<Node> nodosMauricio = new ArrayList();
+    
+    public static Long ruta(int x, int y, Long[][] pond) {
+        return pond[x][y];
+    }
+
+    public static int[][] llenarCaminos(int size) {
+        int[][] caminos = new int[size][size];
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                caminos[i][j] = j;
+            }
+        }
+        return caminos;
+    }
+
+    public static Long[][] Cancer(int size, ArrayList<Node> nodos) {
+        Long[][] pond = new Long[size][size];
+
+        for (int i = 0; i < nodos.size(); i++) {
+            for (int j = 0; j < nodos.get(i).getAristas().size(); j++) {
+                try {
+                    pond[nodos.get(i).getAristas().get(j).getInicial()][nodos.get(i).getAristas().get(j).getFinall()]
+                            = nodos.get(i).getAristas().get(j).getDistancia();
+                    pond[i][i] = 0L;
+
+                } catch (Exception ex) {
+                }
+            }
+        }
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                if (pond[i][j] == null) {
+                    pond[i][j] = Long.MAX_VALUE;
+                }
+            }
+        }
+        return pond;
+
+    }
+
+    public static void Floyd(int size, int[][] cam, Long[][] pond) {
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                for (int k = 0; k < size; k++) {
+                    if (pond[j][i] + pond[i][k] < pond[j][k]) {
+                        pond[j][k] = pond[j][i] + pond[i][k];
+                        cam[j][k] = i;
+                    }
+                }
+            }
+        }
+    }
+
+    public static void Print(int[][] caminos) {
+        System.out.println("caminos");
+        for (int i = 0; i < caminos.length; i++) {
+            for (int j = 0; j < caminos[i].length; j++) {
+                System.out.printf("%5d", caminos[i][j]);
+            }
+            System.out.println("");
+        }
+
+    }
+
+    public static void Print(Long[][] ponderaciones) {
+        System.out.println("ponderaciones");
+        for (int i = 0; i < ponderaciones.length; i++) {
+            for (int j = 0; j < ponderaciones[i].length; j++) {
+                System.out.printf("%5d", ponderaciones[i][j]);
+            }
+            System.out.println("");
+        }
+
+    }
 
 }
 
