@@ -508,8 +508,14 @@ public class Tonelitos extends javax.swing.JFrame {
     }//GEN-LAST:event_jb_addImageActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        boolean isEmpty = false;
+        for (int i = 0; i < grafo.getNodos().size(); i++) {
+            if (grafo.getNodos().get(i).getAristas().isEmpty()){
+                isEmpty = true;
+                break;
+            }
+        }
         JFileChooser chooser = new JFileChooser();
-        
         int seleccion  = chooser.showSaveDialog(this);
         if (seleccion == JFileChooser.APPROVE_OPTION){
             File file=null;
@@ -538,7 +544,6 @@ public class Tonelitos extends javax.swing.JFrame {
                             writer.write(Long.toString(grafo.getNodos().get(i).getAristas().get(j).getDistancia())+"/;");
                         }
                     }
-                        
                     writer.write("\r");
                     }
                     writer.flush();
@@ -939,6 +944,14 @@ public class Tonelitos extends javax.swing.JFrame {
         Dialog.pack();
         Dialog.setVisible(true);
 
+    }
+    
+    public boolean isCompletelyRelated(){
+        
+        
+        
+        
+        return false;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
