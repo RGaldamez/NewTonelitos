@@ -705,7 +705,7 @@ public class Tonelitos extends javax.swing.JFrame {
         aristasDijkstra = grafo.summonDijkstra(indexInicial,indexFinal);
         
         for (int i = 0; i < aristasDijkstra.size(); i++) {
-            System.out.println(aristasDijkstra.get(i).getDistancia());
+            System.out.println(aristasDijkstra.get(i).toString());
         }
         
         

@@ -69,6 +69,11 @@ public class Arista {
         this.nodoFinal = nodoFinal;
     }
     
+    @Override 
+    public String toString(){
+      return ("Inicia: "+nodoInicial.getNombre()+" Termina: "+nodoFinal.getNombre()+" Distancia: "+this.distancia);  
+    }
+    
     
     
     
